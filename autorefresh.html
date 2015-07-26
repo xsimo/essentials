@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Auto-refreshing iframe</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<style type="text/css">
+			body{background-color:#EEE;}
+			#main{margin-left:20px;}
+			iframe{resize: both;width:1220px;height:600px;}
+			#footer{font-size:9px;}
+		</style>
+	</head>
+	<body>
+		<div id="main">
+			<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+			<script type="text/javascript">
+				//the following global variable is needed to keep only one thread of auto-refresh
+				var frequency,address,timer;
+				function reloadFrame(){
+					if(!$('#pause').is(":checked")){
+						var frame = $($('#wrapper').find("iframe"));
+						var height = frame.css("height");
+						var width = frame.css("width")
+						frame.remove();
+						$("#wrapper").append($('<iframe id="theIframe" src="'+address+'" style="width:'+width+';height:'+height+';"></iframe>'));
+					}
+					timer = setTimeout(reloadFrame,frequency);
+				}
+				$(document).ready(function(){
+					address = "http://time5.nrc.ca/webclock_static_e.shtml";
+					$('#address').attr("value",address);
+					frequency = parseInt($("#frequency").val());
+					timer = setTimeout(reloadFrame,150);
+				});
+				function refresh(){
+					clearTimeout(timer);
+					$("#pause").removeAttr("checked");
+					frequency = parseInt($("#frequency").val());
+					address=$('#address').val();
+					timer = setTimeout(reloadFrame,0);
+					return false;
+				}
+				function changeInterval(){
+					clearTimeout(timer);
+					frequency = parseInt($("#frequency").val());
+					timer = setTimeout(reloadFrame,0);
+				}
+				function punch(){
+					if(!$('#pause').is(':checked')){
+						changeInterval();
+					}
+				}
+			</script>
+			<div id="test">
+				<h2>Auto-refreshing iframe</h2>
+				<form onsubmit="return refresh()">
+					<input type="text" tabindex="1" size="60" id="address" name="wr"/>
+					<input type="submit"/>
+					<select id="frequency" onchange="changeInterval();">
+						<option value="2017">2.017 seconds</option>
+						<option selected="selected" value="15000">150 tenth of seconds</option>
+					</select>
+					pause<input id="pause" type="checkbox" onchange="punch()" />
+				</div>
+			</form>
+			<br>
+			<div id="wrapper"><iframe src="" id="monitor"></iframe></div>
+			<br>
+			<div id="footer">
+			<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+				<img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png"/></a>
+			This work is licensed under a 
+			<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>. 
+			Simon Arame, 2015.
+			</div>
+		</div>
+	</body>
+</html>
