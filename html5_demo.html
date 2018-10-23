@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.fa-check-circle{
+	color:green;
+	background-color:#ddd;
+}
+div.feature {
+	position:relative;
+    width: 100px;
+    height: auto;
+	color:#777;
+	font-weight:bold;
+    background-color:#ddd;
+	font-family:Arial, Helvetica, sans-serif;
+	padding:10px;
+	border-radius:10px;
+	margin-bottom:20px;
+}
+#div1 {
+    width: 100px;
+    height: 100px;
+    border: 1px solid #aaaaaa;
+}
+.fgrid{
+	float:left;
+	margin:20px;
+}
+#animated {	
+	position:relative;
+	left:-25% !important;
+	margin-left:-50px;
+	width:100px;
+    -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 4s; /* Safari 4.0 - 8.0 */
+    animation-name: example;
+    animation-duration: 3s;
+	animation-delay: 0s;
+	animation-iteration-count: infinite;
+	animation-fill-mode: forwards;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes example {
+    0%   {left: -100%;}
+    50%  {left: 50%;}
+    100% {left: 100%;}
+}
+
+/* Standard syntax */
+@keyframes example {
+    0%   {left: -50%;}
+    50%  {left: 50%;}
+    100% {left: 150%;}
+}
+</style>
+</head>
+<body>
+<h1>HTML 5 demo</h1>
+<i>credits : https://www.w3schools.com</i>
+<div class="feature fgrid" style="overflow:hidden"><div id="animated"><center><p>HTML 5<br>animation</p><i class="fa fa-3x fa-check-circle"></i></center></div>
+</div>
+<br>
+<div class="feature fgrid"><center><p>HTML 5<br>SVG</p>
+<svg width="100" height="100">
+  <rect x=2 y=2 width="96" height="96" stroke="#999" stroke-width="4" fill="#BBB" />
+  <rect x="25" y="25" width="50" height="50" stroke="blue" stroke-width="4" fill="#00f" />
+  <ellipse cx="65" cy="42" rx="28" ry="22" stroke="yellow" stroke-width="4" fill="none" />
+  <circle cx="50" cy="70" r="20" stroke="red" stroke-width="4" fill="#f00" />
+  <polygon points="54,80,90,80,72,45" style="fill:lime;stroke:purple;stroke-width:1" />
+</svg>
+<i class="fa fa-3x fa-check-circle"></i></center></div>
+<div class="feature fgrid"><center><p>HTML 5<br>canvas</p>
+<i class="fa fa-3x fa-check-circle" id="canvascheck" style="display:none;"></i>
+<button onclick="drawcanvas()">draw canvas</button>
+<br><br>
+<canvas id="myCanvas" width="100px" height="50px">Your browser does not support the HTML5 canvas tag.</canvas>
+<script>
+function drawcanvas(){
+	var c = document.getElementById("myCanvas");
+	var ctx = c.getContext("2d");
+	ctx.strokeStyle="#99CCFF";
+	ctx.rect(0, 0, 80, 40);
+	ctx.stroke();
+	ctx.clip();
+	
+	ctx.beginPath();
+	
+	ctx.fillStyle = "#99CCFF";
+	ctx.fillRect(0, 0, 100, 100);
+	
+	ctx.beginPath();
+	ctx.fillStyle = "#FFFF00";
+	ctx.arc(40,90,65,0,2*Math.PI);
+	ctx.fill();
+	
+	document.getElementById("canvascheck").style.display = "block";
+}
+</script>
+</center></div>
+<div class="feature fgrid" style="width:auto !important;"><center><p>HTML 5<br>video</p>
+<i class="fa fa-3x fa-check-circle"></i><br>
+<video width="320" height="240" controls>
+  <source src="https://www.w3schools.com/tags/movie.mp4" type="video/mp4">
+  <source src="https://www.w3schools.com/tags/movie.ogg" type="video/ogg">
+  Your browser does not support the video tag.
+</video>
+</center></div>
+<div class="feature fgrid"><center><p>HTML 5<br>localStorage</p>
+<i class="fa fa-3x fa-check-circle"></i>
+<div id="localSto"/>
+<script>
+var s = document.getElementById("localSto");
+
+var d = new Date();
+var a = localStorage.getItem("lastVisitDemoHTML5Banner");
+if(a !== undefined && a !== null && a !== ""){
+	s.innerHTML = "derniere visite : " + a;
+}else{
+	s.innerHTML = "premiere visite";
+}
+localStorage.setItem("lastVisitDemoHTML5Banner", d.toString());
+</script>
+</center></div>
+<div class="feature fgrid" style="width:auto !important;"><center><p>HTML 5<br>geolocation</p>
+<i class="fa fa-3x fa-check-circle"></i>
+<div style="width:100px" id="geoloc"/>
+<script>
+var x = document.getElementById("geoloc");
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+function showPosition(position) {
+    x.innerHTML = "Latitude: " + position.coords.latitude + 
+    "<br>Longitude: " + position.coords.longitude; 
+}
+getLocation();
+</script>
+</center></div>
+<div class="feature fgrid" style="width:auto !important;"><center><p>HTML 5<br>audio</p>
+<audio controls>
+  <source src="https://www.w3schools.com/tags/horse.ogg" type="audio/ogg">
+  <source src="https://www.w3schools.com/tags/horse.mp3" type="audio/mpeg">
+  Your browser does not support the audio tag.
+</audio>
+<i class="fa fa-3x fa-check-circle"></i></center></div>
+<div class="feature fgrid"><center><p>HTML 5<br>drag and drop</p>
+<script>
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+	document.getElementById("dragcheck").style.display = "block";
+}
+</script>
+<i>faites remonter le cercle bleu dans le carr&eacute;.</i>
+<center id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></center>
+<div id="drag1" draggable="true" ondragstart="drag(event)">
+<svg width="100" height="100" >
+<circle cx="50" cy="50" r="25" stroke="blue" stroke-width="4" fill="#00f" />
+<line x1="50" y1="70" x2="50" y2="44" stroke="yellow" stroke-width="4"/>
+<line x1="35" y1="60" x2="50" y2="45" stroke="yellow" stroke-width="4"/>
+<line x1="65" y1="60" x2="50" y2="45" stroke="yellow" stroke-width="4"/>
+</svg>
+</div>
+<i class="fa fa-3x fa-check-circle" id="dragcheck" style="display:none;"></i></center></div>
+</body>
+</html>
