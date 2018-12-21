@@ -1,0 +1,19 @@
+/** LE PARSE DES TECHNIQUES D'ABREGES SUIVANTES EST REQUIS DANS LE ECLIPSE DAY-TO-DAY
+DU SASS DEV QUI N'ACHÈTE PAS IntelliJ ET N'EST PAS FAN D'APTANA 
+L'INTERMÈDE DES FÊTES NE PROMET RIEN MAIS POURRAIT OFFRIR ASSEZ DE TEMPS POUR
+PROPOSER yet UN AUTRE ÉDITEUR DE CSS AVEC 
+LE DRAGON BOOK SERA ALORS LE LIVRE DE REFERENCE POUR LA PENSÉE INCLUSIVE
+https://fr.wikipedia.org/wiki/Dragon_book
+SI PIGMENT EST REQUIS, J'AVISERAI
+*/
+
+.class1{
+	&.class2{
+		proprieteCss1: $variable1;
+	}
+	&class3{
+		@include mixin1(1, 10, 100);
+		#{$variableInterpolated1} : 20px;
+		proprieteCss2: #{variablePropertyValueInterpolated1} / #{variablePropertyValueInterpolated2};
+	}
+}
