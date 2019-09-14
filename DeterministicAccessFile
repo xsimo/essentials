@@ -1,0 +1,38 @@
+package com.bibliomondo.test1015;
+
+/**verbose
+ * A Recourse Used Whence 
+ * Ye Olde Commons.IO 
+ * can not resist to fold 
+ * from a jvm con.text
+ * Xsimo¯CARAS2993316/fr
+ */
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class DeterministicAccessFile {
+
+	public static String readRsrcFromClasspath(String fileName) throws IOException{
+		
+		String theWorldOnAString = "";
+		java.net.URL fileUrl = Thread.currentThread().getContextClassLoader().getResource(fileName);
+		BufferedReader reader = null;
+		try{
+			reader = new BufferedReader(new InputStreamReader(new FileInputStream(fileUrl.getPath()),"UTF-8"));
+			String line = null;
+			while( (line = reader.readLine()) != null){
+				theWorldOnAString += line;
+			}
+		}finally{
+			try{
+				reader.close();
+			}catch(Exception e){
+				//current exception is safe to ignore silently
+			}
+		}
+		return theWorldOnAString;
+	}
+}
