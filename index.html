@@ -3,30 +3,77 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>The essentials</title>
+<script type="text/javascript">
+	function uuid(){
+		var u = uuid_sub(1,2);
+		document.getElementById("consoleArea").innerHTML = u;
+	}
+	function uuid_sub(a,b){
+		for(b=a='';a++<36;b+=a*51&52?(a^15?8^Math.random()*(a^20?16:4):4).toString(16):'');
+		return b
+	}
+</script>
 <style type="text/css">
-body {color:#000000;background-color:#B3B3B3;margin:0;}
-#container {margin-left:auto;margin-right:auto;text-align:center;}
-a img {border:none;}
-#fileList{background:#EEE;width:40%; margin-left:30%; text-align:left; padding-left:50px; padding-top:20px; padding-bottom:20px; font-family:verdana; line-height:1.5;}
+	body {
+		color:#000000;
+		background-color:#B3B3B3;
+		margin:0;
+	}
+	#container {
+		margin-left:auto;
+		margin-right:auto;
+		text-align:center;
+		margin-top:20px;
+	}
+	a img {
+		border:none;
+	}
+	#fileList{
+		background:#EEEEEE;
+		margin-left:30%;
+		text-align:left;
+		padding-left:50px;
+		padding-top:20px;
+		padding-bottom:20px;
+		font-family:verdana;
+		line-height:1.5;
+		width:40%;
+	}
+	textarea{
+		background-color:black;
+		color:lime;
+		word-wrap: break-word;
+		width:250px;
+		border:solid;
+		border-width: 4px 8px 8px 8px;
+		border-color:gray;
+		margin:0px;
+		height:40px;
+		vertical-align:middle;
+	}
 </style>
 </head>
 <body>
 <div id="container">
-<a href="http://go.microsoft.com/fwlink/?linkid=66138&amp;clcid=0x409">IIS</a><br>
-<a href="https://httpd.apache.org/">apache httpd</a><br>
-nginx<br>
-cgi<br>
-<a href="https://www.google.com/">autres directions</a><br>
-<a href="https://www.bing.com/">toutes directions</a><br>
-<br>
-<br>
-<br>
-<div id="fileList">
-<ul>
-<li><a href="autorefresh.html">Autorefresh</a></li>
-<li><a href="html5_demo.html">HTML 5 demo</a></li>
-</ul>
-</div>
+	<a href="http://simonarame.com/"><img width="300px" src="https://simonarame.com/4flags.jpg"/></a>
+	<br/>
+	<h1>Simon Arame's online resources</h1>
+	<div id="fileList">
+		<h3>a list of some ressources</h3>
+		<ul>
+			<li><a href="autorefresh.html">Autorefresh</a></li>
+			<li><a href="html5_demo.html">HTML 5 demo</a></li>
+			<li><a href="http://go.microsoft.com/fwlink/?linkid=66138&amp;clcid=0x409">IIS</a></li>
+			<li><a href="https://httpd.apache.org/">apache httpd</a></li>
+			<li>nginx</li>
+			<li>cgi</li>
+			<li><a href="https://www.google.com/">Google</a></li>
+			<li><a href="https://www.bing.com/">Bing</a></li>
+			<li><a href="#" onclick="uuid()">Generate uuid with javascript</a><br>
+				<textarea id="consoleArea"></textarea>
+			</li>
+		</ul>
+	</div>
 </div>
 </body>
 </html>
